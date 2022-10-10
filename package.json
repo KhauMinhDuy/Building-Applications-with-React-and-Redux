@@ -2,10 +2,21 @@
   "name": "ps-redux",
   "description": "React and Redux Pluralsight course by Cory House",
   "scripts": {
-		"start": "run-p start:dev start:api",
+    "start": "run-p start:dev start:api",
     "start:dev": "webpack serve --config webpack.config.dev.js --port 3000",
-		"prestart:api": "node tools/createMockDb.js",
-		"start:api": "node tools/apiServer.js"
+    "prestart:api": "node tools/createMockDb.js",
+    "start:api": "node tools/apiServer.js",
+    "test": "jest --watch"
+  },
+	"jest": {
+    "setupFiles": [
+      "./tools/testSetup.js"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tools/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/tools/styleMock.js"
+    }
   },
   "dependencies": {
     "bootstrap": "5.0.2",
@@ -23,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "7.14.6",
     "@testing-library/react": "^12.0.0",
+    "@types/jest": "^29.1.2",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.2",
