@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
+import Spinner from "../common/Spinner";
 
-const ManageCoursesPage = ({
+const CourseDetail = ({
   courses,
   authors,
   loadCourses,
@@ -49,20 +50,20 @@ const ManageCoursesPage = ({
     });
   };
 
-  return (
-    <>
-      <CourseForm
-        course={course}
-        errors={errors}
-        authors={authors}
-        onChange={handlerChange}
-        onSave={handlerSave}
-      />
-    </>
+  return authors.length === 0 || courses.length === 0 ? (
+    <Spinner />
+  ) : (
+    <CourseForm
+      course={course}
+      errors={errors}
+      authors={authors}
+      onChange={handlerChange}
+      onSave={handlerSave}
+    />
   );
 };
 
-ManageCoursesPage.propTypes = {
+CourseDetail.propTypes = {
   courses: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
   loadCourses: PropTypes.func.isRequired,
@@ -93,4 +94,4 @@ const mapDispatchToProps = {
   loadAuthors,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursesPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseDetail);

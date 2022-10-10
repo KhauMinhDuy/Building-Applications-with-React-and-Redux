@@ -7,3 +7,6 @@ export const UPDATE_COURSE_SUCCESS = "UPDATE_COURSE_SUCCESS";
 
 // Action Author
 export const LOAD_AUTHORS_SUCCESS = "LOAD_AUTHORS_SUCCESS";
+
+// API Action
+export const BEGIN_API_CALL = "BEGIN_API_CALL";
