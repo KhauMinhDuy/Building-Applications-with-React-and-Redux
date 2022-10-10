@@ -1,13 +1,15 @@
-import * as types from '../actions/actionTypes';
-import initState from './InitialState';
+import * as types from "../actions/actionTypes";
+import initState from "./InitialState";
 
 export default function courseReducer(state = initState.courses, action) {
-	switch(action.type) {
-		case types.CREATE_COURSE: 
-			return [...state, {...action.course}];
-		case types.LOAD_COURSES_SUCCESS:
-			return action.courses;
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case types.CREATE_COURSE_SUCCESS:
+      return [...state, { ...action.course }];
+    case types.UPDATE_COURSE_SUCCESS:
+      return state.map((course) => (course.id === action.course.id ? action.course : course));
+    case types.LOAD_COURSES_SUCCESS:
+      return action.courses;
+    default:
+      return state;
+  }
 }
